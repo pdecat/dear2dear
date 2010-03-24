@@ -1,0 +1,8 @@
+#summary Lists intents that are, could or cannot be used by dear2dear
+
+= Introduction =
+
+This page lists intents used by dear2dear.
+
+= Used Intents =
+  * [http://code.google.com/p/openintents/ OpenIntents About for Android (Apache License 2.0)]
