@@ -8,7 +8,7 @@ This page lists intents used by dear2dear.
   * [http://code.google.com/p/openintents/ OpenIntents About for Android (Apache License 2.0)]
 
 = Could be used intents =
-  * 
+  * [http://code.google.com/p/zxing/ ZXing (Apache License 2.0)]
 
 = Cannot be used intents =
   * 
