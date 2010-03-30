@@ -1,0 +1,10 @@
+#summary Todo List
+= General Ideas =
+Use intents to :
+  * edit configuration -> generic configuration editor
+  * edit files (text, HTML, etc.)
+
+= dear2dear ideas =
+  * Notification area shortcut
+  * Start at boot
+  * Fast reply to last incoming call/SMS
