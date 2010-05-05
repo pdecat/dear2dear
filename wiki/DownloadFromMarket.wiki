@@ -1,2 +1,2 @@
 #summary Get dear2dear from the Android Market
-<img src="http://dear2dear.googlecode.com/svn/trunk/qr-codes/market-dear2dear.png" alt="Get dear2dear from the Android Market" />
+http://dear2dear.googlecode.com/svn/trunk/qr-codes/market-dear2dear.png
