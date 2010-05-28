@@ -1,0 +1,7 @@
+#summary TrafficInfoGrabber's home.
+#labels TIG
+
+= Introduction =
+
+Not much for now.
+Please add comments for suggestions or other stuff about TIG.
