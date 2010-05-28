@@ -6,5 +6,14 @@
 Not much for now.
 Please add comments for suggestions or other stuff about TIG.
 
+= In progress =
+* adapt default zoom to screen density
+
+= TODO list =
+* editable URLs
+* selectable zoom levels
+* GPS localization on maps
+* 
+
 = Source code =
 http://dear2dear.googlecode.com/svn/trunk/tig/TrafficInfoGrabber/
