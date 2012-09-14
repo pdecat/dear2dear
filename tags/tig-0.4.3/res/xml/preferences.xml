@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+    Copyright (C) 2010-2012 Patrick Decat
+
+    TrafficInfoGrabber is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    TrafficInfoGrabber is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with TrafficInfoGrabber.  If not, see <http://www.gnu.org/licenses/>.
+
+-->
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory
+        android:summary="@string/PREFS_CATEGORY_INTERFACE_SUMMARY"
+        android:title="@string/PREFS_CATEGORY_INTERFACE_TITLE" >
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="SHOW_REFRESH_BUTTON"
+            android:summary="@string/SHOW_REFRESH_BUTTON_SUMMARY"
+            android:title="@string/SHOW_REFRESH_BUTTON" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="SHOW_DAY_NIGHT_SWITCH_BUTTON"
+            android:summary="@string/SHOW_DAY_NIGHT_SWITCH_BUTTON_SUMMARY"
+            android:title="@string/SHOW_DAY_NIGHT_SWITCH_BUTTON" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="SHOW_QUIT_BUTTON"
+            android:summary="@string/SHOW_QUIT_BUTTON_SUMMARY"
+            android:title="@string/SHOW_QUIT_BUTTON" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="FORCE_PORTRAIT_ORIENTATION"
+            android:summary="@string/FORCE_PORTRAIT_ORIENTATION_SUMMARY"
+            android:title="@string/FORCE_PORTRAIT_ORIENTATION" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="USE_HD"
+            android:summary="@string/USE_HD_SUMMARY"
+            android:title="@string/USE_HD" />
+        <Preference
+            android:key="OTHER_ACTIVITY"
+            android:summary="@string/OTHER_ACTIVITY_SUMMARY"
+            android:title="@string/OTHER_ACTIVITY" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:summary="@string/PREFS_CATEGORY_NOTIFICATIONS_SUMMARY"
+        android:title="@string/PREFS_CATEGORY_NOTIFICATIONS_TITLE" >
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="NOTIFICATION_SHORTCUT"
+            android:summary="@string/NOTIFICATION_SHORTCUT_SUMMARY"
+            android:title="@string/NOTIFICATION_SHORTCUT" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="NOTIFICATION_SHORTCUT_ON_BOOT"
+            android:summary="@string/NOTIFICATION_SHORTCUT_ON_BOOT_SUMMARY"
+            android:title="@string/NOTIFICATION_SHORTCUT_ON_BOOT" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:summary="@string/PREFS_CATEGORY_OTHER_SUMMARY"
+        android:title="@string/PREFS_CATEGORY_OTHER_TITLE" >
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="SHOW_ADS"
+            android:summary="@string/SHOW_ADS_SUMMARY"
+            android:title="@string/SHOW_ADS" />
+    </PreferenceCategory>
+
+</PreferenceScreen>
