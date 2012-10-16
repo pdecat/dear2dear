@@ -1,0 +1,30 @@
+v0.6.1:
+- Optimisation du chargement de la vue Trafic 
+- Nouvelle vue Trafic Allégé avec choix de la cartographie
+- Afficher la vue Trafic Allégé par défaut sur les anciennes versions d'Android (SVG nécessite au minimum Android 3.0 / Honeycomb)
+
+v0.6.0:
+- Adaptation aux derniers changements du site Sytadin
+- Ajout d'un délai d'expiration de 60s au chargement des pages pour automatiquement recharger lors des échecs 
+
+v0.5.0:
+- Gestion des événements du mode Voiture
+- Ajout d'un bouton "application tierce" optionnel
+- Tuer le processus lors d'un appui long sur le bouton "quitter"
+- Demander avant de lancer l'éditeur de préférences quand une nouvelle version est lancée
+- Ajustement des marges de la vue web sur Android 3.0+
+- Nettoyage de la gestion des préférences
+- Correction : ne pas lancer l'éditeur de préférencs lors que l'on revient du site InfoTraffic
+
+v0.4.3:
+- Nouvel éditeur de préférences
+- Correction : sélection d'activité tierce
+- Correction : centrage de la vue basse définition sur Android 3.0+
+- Correction : chargement de la vue trafic allégé
+
+v0.4.2:
+- Amélioration de l'agencement du compte à rebours
+
+v0.4.1:
+- Compte à rebours avant rechargement lors d'erreur de chargement
+- Correction diverses (barre d'action superposée sur Android 3.0+, vue trafic allégée, rafraîchissement au clic sur l'icône, affichage des publicités, etc.)
