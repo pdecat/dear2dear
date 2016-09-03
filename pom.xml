@@ -28,7 +28,7 @@
     <parent>
         <groupId>org.decat</groupId>
         <artifactId>parent</artifactId>
-        <version>0.0.1</version>
+        <version>0.4.1</version>
     </parent>
 
     <scm>
@@ -39,15 +39,19 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.google.android</groupId>
+            <groupId>android</groupId>
             <artifactId>android</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>com.googlecode.androidannotations</groupId>
+            <groupId>org.androidannotations</groupId>
             <artifactId>androidannotations</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.androidannotations</groupId>
+            <artifactId>androidannotations-api</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
@@ -86,7 +90,7 @@
             </plugin>
 
             <plugin>
-                <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+                <groupId>com.simpligility.maven.plugins</groupId>
                 <artifactId>android-maven-plugin</artifactId>
             </plugin>
 
@@ -128,7 +132,7 @@
                     </plugin>
 
                     <plugin>
-                        <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+                        <groupId>com.simpligility.maven.plugins</groupId>
                         <artifactId>android-maven-plugin</artifactId>
                     </plugin>
 
