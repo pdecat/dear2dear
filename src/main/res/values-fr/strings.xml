@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 
-    Copyright (C) 2010-2012 Patrick Decat
+    Copyright (C) 2010-2016 Patrick Decat
 
     dear2dear is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -79,6 +79,6 @@
 
 	<!-- Strings for About dialog -->
 	<string name="about_comments">Un simple notificateur des personnes qui vous sont chères</string>
-	<string name="about_copyright">Tous droits réservés © 2010-2012 Patrick Decat</string>
+	<string name="about_copyright">Tous droits réservés © 2010-2016 Patrick Decat</string>
 	<string name="about_website_label">dear2dear chez Google Code</string>
 </resources>
