@@ -241,6 +241,10 @@ public class dear2dear extends Activity {
 		}
 	}
 
+        private static String getAppVersionName() {
+                return BuildConfig.VERSION_NAME;
+        }
+
 	public static void updateNotificationShortcut(Context context) {
 		// Get shared preferences
 		SharedPreferences sharedPreferences = context.getSharedPreferences(dear2dear.class.getSimpleName(), Context.MODE_PRIVATE);
@@ -253,7 +257,7 @@ public class dear2dear extends Activity {
 			if (value) {
 				Notification notification = new Notification(R.drawable.icon, context.getString(R.string.notificationMessage), System.currentTimeMillis());
 				Intent intent = new Intent(context, dear2dear.class);
-				notification.setLatestEventInfo(context, context.getString(R.string.app_name) + " " + context.getString(R.string.app_version), context.getString(R.string.notificationLabel),
+				notification.setLatestEventInfo(context, context.getString(R.string.app_name) + " " + getAppVersionName(), context.getString(R.string.notificationLabel),
 						PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT));
 				notification.flags |= Notification.FLAG_ONGOING_EVENT;
 				notification.flags |= Notification.FLAG_NO_CLEAR;
