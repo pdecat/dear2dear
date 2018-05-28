@@ -32,9 +32,10 @@
     </parent>
 
     <scm>
-        <connection>scm:svn:http://dear2dear.googlecode.com/svn/trunk/d2d/dear2dear</connection>
-        <developerConnection>scm:svn:https://dear2dear.googlecode.com/svn/trunk/d2d/dear2dear</developerConnection>
-        <url>http://code.google.com/p/dear2dear/source/browse/#svn%2Ftrunk%2Fd2d2d%2Fdear2dear</url>
+        <connection>scm:git:https://github.com/pdecat/dear2dear</connection>
+        <developerConnection>scm:git:git@github.com:pdecat/dear2dear</developerConnection>
+        <url>https://github.com/pdecat/dear2dear</url>
+        <tag>HEAD</tag>
     </scm>
 
     <dependencies>
