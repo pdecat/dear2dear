@@ -33,9 +33,6 @@
 	<!-- Miscellaneous messages -->
 	<string name="contactInformationInvalidText">Les informations du contact %1$s sont invalides ! (contactUri=%2$s, cachedName=%3$s, currentName=%4$s)</string>
 	<string name="pleaseProceedWithConfigurationFirstText">Veuillez procéder à la configuration en premier...</string>
-	<string name="requiresOIAboutAndSearchingMarketText">Nécessite \'OI About\' pour l\'affichage de la boîte de dialogue \'À propos\'. Recherche sur l\'Android
-		Market lancée...</string>
-	<string name="failedToStartActivityText">Échec du démarrage de l\'activité pour l\'intention %s !</string>
 
 	<!-- Permissions -->
 	<string name="permissionReadContactsRationale">dear2dear nécessite la permission READ_CONTACTS pour obtenir le numéro de téléphone du destinataire du SMS.</string>
@@ -92,7 +89,7 @@
 	<string name="contactSelectedToast">Sélection de %1$s (id=%2$d, position=%3$d)</string>
 
 	<!-- Strings for About dialog -->
-	<string name="about_comments">Un simple notificateur des personnes qui vous sont chères</string>
-	<string name="about_copyright">Tous droits réservés © 2010-2016 Patrick Decat</string>
-	<string name="about_website_label">dear2dear chez Google Code</string>
+	<string name="about_copyright">Tous droits réservés © 2010-2018 Patrick Decat\npdecat+d2d@gmail.com</string>
+	<string name="about_description">Un simple notificateur par SMS aux personnes qui vous sont chères</string>
+	<string name="about_website">https://github.com/pdecat/dear2dear</string>
 </resources>

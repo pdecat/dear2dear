@@ -21,6 +21,7 @@ import java.util.List;
 import org.decat.d2d.Preference.PreferenceGroup;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -31,6 +32,7 @@ import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
@@ -45,6 +47,8 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.telephony.SmsManager;
+import android.text.method.LinkMovementMethod;
+import android.text.util.Linkify;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
@@ -58,9 +62,7 @@ import android.widget.Toast;
 public class dear2dear extends Activity {
 	public static final String TAG = "D2D";
 
-	private static final int ACTIVITY_REQUEST_OI_ABOUT_INSTALL = 1;
-	private static final int ACTIVITY_REQUEST_OI_ABOUT_LAUNCH = 2;
-	private static final int ACTIVITY_REQUEST_PREFERENCES_EDITOR = 3;
+	private static final int ACTIVITY_REQUEST_PREFERENCES_EDITOR = 1;
 
 	private static final int ACTIVITY_REQUEST_PERMISSION_READ_CONTACTS = 10;
 	private static final int ACTIVITY_REQUEST_PERMISSION_READ_PHONE_STATE = 11;
@@ -70,8 +72,6 @@ public class dear2dear extends Activity {
 	private static final String INTENT_SMS_DELIVERED = "SMS_DELIVERED";
 
 	private static final String DEFAULT_NOTIFICATION_CHANNEL_ID = "DEFAULT";
-
-	private static final String ORG_OPENINTENTS_ACTION_SHOW_ABOUT_DIALOG = "org.openintents.action.SHOW_ABOUT_DIALOG";
 
 	private TextView tv;
 
@@ -354,39 +354,34 @@ public class dear2dear extends Activity {
 	}
 
 	private void showAbout() {
-		Intent intent = new Intent(ORG_OPENINTENTS_ACTION_SHOW_ABOUT_DIALOG);
-		int activityRequest = ACTIVITY_REQUEST_OI_ABOUT_LAUNCH;
+		AlertDialog.Builder aboutWindow = new AlertDialog.Builder(this);
+		TextView tx = new TextView(this);
+		tx.setAutoLinkMask(Linkify.ALL);
+		tx.setLinksClickable(true);
+		tx.setMovementMethod(LinkMovementMethod.getInstance());
+		tx.setGravity(Gravity.CENTER);
+		tx.setTextSize(16);
+		tx.setText(getString(R.string.app_name).concat(" ").concat(getAppVersionName()).concat("\n\n").concat(getString(R.string.about_description)).concat("\n\n")
+				.concat(getString(R.string.about_copyright)).concat("\n\n").concat("\n\n").concat(getString(R.string.about_website)));
 
-		try {
-			PackageManager pm = getPackageManager();
-			if (pm.queryIntentActivities(intent, 0).size() == 0) {
-				String message = getString(R.string.requiresOIAboutAndSearchingMarketText);
-				Log.i(dear2dear.TAG, message);
-				showToast(message);
-				intent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://search?q=pname:org.openintents.about"));
-				activityRequest = ACTIVITY_REQUEST_OI_ABOUT_INSTALL;
+		// TODO: display @raw/license_short and @raw/recent_changes
+
+		aboutWindow.setIcon(R.drawable.icon);
+		aboutWindow.setTitle(R.string.about);
+		aboutWindow.setView(tx);
+
+		aboutWindow.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.dismiss();
 			}
-
-			startActivityForResult(intent, activityRequest);
-		} catch (Exception e) {
-			String message = getString(R.string.failedToStartActivityText, intent.toString());
-			Log.e(dear2dear.TAG, message, e);
-			showToast(message);
-		}
+		});
+		aboutWindow.show();
 	}
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		switch (requestCode) {
-			case ACTIVITY_REQUEST_OI_ABOUT_LAUNCH:
-				Log.d(dear2dear.TAG, "Back from OI About");
-				break;
-			case ACTIVITY_REQUEST_OI_ABOUT_INSTALL:
-				if (resultCode == RESULT_CANCELED) {
-					Log.d(dear2dear.TAG, "Back from Android Market");
-					showAbout();
-				}
-				break;
 			case ACTIVITY_REQUEST_PREFERENCES_EDITOR:
 				Log.d(dear2dear.TAG, "Back from preferences editor");
 				break;
