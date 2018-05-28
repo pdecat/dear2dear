@@ -28,7 +28,7 @@
     <parent>
         <groupId>org.decat</groupId>
         <artifactId>parent</artifactId>
-        <version>0.4.1</version>
+        <version>0.5.4</version>
     </parent>
 
     <scm>
@@ -41,6 +41,12 @@
         <dependency>
             <groupId>android</groupId>
             <artifactId>android</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.android.support</groupId>
+            <artifactId>support-compat</artifactId>
+            <type>aar</type>
         </dependency>
 
         <dependency>

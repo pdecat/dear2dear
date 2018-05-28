@@ -37,6 +37,19 @@
 	<string name="requiresOIAboutAndSearchingMarketText">Requires \'OI About\' to show about dialog. Searching Android Market for it…</string>
 	<string name="failedToStartActivityText">Failed to start activity for intent %s!</string>
 
+	<!-- Permissions -->
+	<string name="permissionReadContactsRationale">dear2dear needs READ_CONTACTS permission to get the phone number of the SMS recipient.</string>
+	<string name="permissionReadContactsGranted">The READ_CONTACTS permission was granted.</string>
+	<string name="permissionReadContactsDenied">The READ_CONTACTS permission was denied.</string>
+
+	<string name="permissionReadPhoneStateRationale">dear2dear needs READ_PHONE_STATE on Android 8.0 to send SMS (issue https://issuetracker.google.com/issues/66979952).</string>
+	<string name="permissionReadPhoneStateGranted">The READ_PHONE_STATE permission was granted.</string>
+	<string name="permissionReadPhoneStateDenied">The READ_PHONE_STATE permission was denied.</string>
+
+	<string name="permissionSendSmsRationale">dear2dear needs SEND_SMS permission to send the SMS to the recipient.</string>
+	<string name="permissionSendSmsGranted">The SEND_SMS permission was granted.</string>
+	<string name="permissionSendSmsDenied">The SEND_SMS permission was denied.</string>
+
 	<!-- Strings for steps -->
 	<string name="sendToWhomText">Send to Whom?</string>
 	<string name="sendContactWhatText">Send %s What?</string>

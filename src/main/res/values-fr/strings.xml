@@ -37,6 +37,20 @@
 		Market lancée...</string>
 	<string name="failedToStartActivityText">Échec du démarrage de l\'activité pour l\'intention %s !</string>
 
+	<!-- Permissions -->
+	<string name="permissionReadContactsRationale">dear2dear nécessite la permission READ_CONTACTS pour obtenir le numéro de téléphone du destinataire du SMS.</string>
+	<string name="permissionReadContactsGranted">La permission READ_CONTACTS a été accordée.</string>
+	<string name="permissionReadContactsDenied">La permission READ_CONTACTS a été refusée.</string>
+
+	<string name="permissionReadPhoneStateRationale">dear2dear nécessite la permission READ_PHONE_STATE sur Android 8.0 pour l\'envoi de SMS (issue https://issuetracker.google.com/issues/66979952).</string>
+	<string name="permissionReadPhoneStateGranted">La permission READ_PHONE_STATE a été accordée.</string>
+	<string name="permissionReadPhoneStateDenied">La permission READ_PHONE_STATE a été refusée.</string>
+
+	<string name="permissionSendSmsRationale">dear2dear nécessite la permission SEND_SMS our l\'envoi de SMS au destinataire.</string>
+	<string name="permissionSendSmsGranted">La permission SEND_SMS a été accordée.</string>
+	<string name="permissionSendSmsDenied">La permission SEND_SMS a été refusée.</string>
+
+
 	<!-- Strings for steps -->
 	<string name="sendToWhomText">Envoyer à qui ?</string>
 	<string name="sendContactWhatText">Envoyer à %s quoi ?</string>

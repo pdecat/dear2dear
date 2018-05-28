@@ -22,6 +22,7 @@ import org.decat.d2d.Preference.PreferenceGroup;
 
 import android.app.Activity;
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
@@ -35,9 +36,14 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.Manifest;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.Contacts.People;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.ContextCompat;
 import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.Gravity;
@@ -56,8 +62,14 @@ public class dear2dear extends Activity {
 	private static final int ACTIVITY_REQUEST_OI_ABOUT_LAUNCH = 2;
 	private static final int ACTIVITY_REQUEST_PREFERENCES_EDITOR = 3;
 
+	private static final int ACTIVITY_REQUEST_PERMISSION_READ_CONTACTS = 10;
+	private static final int ACTIVITY_REQUEST_PERMISSION_READ_PHONE_STATE = 11;
+	private static final int ACTIVITY_REQUEST_PERMISSION_SEND_SMS = 12;
+
 	private static final String INTENT_SMS_SENT = "SMS_SENT";
 	private static final String INTENT_SMS_DELIVERED = "SMS_DELIVERED";
+
+	private static final String DEFAULT_NOTIFICATION_CHANNEL_ID = "DEFAULT";
 
 	private static final String ORG_OPENINTENTS_ACTION_SHOW_ABOUT_DIALOG = "org.openintents.action.SHOW_ABOUT_DIALOG";
 
@@ -139,6 +151,18 @@ public class dear2dear extends Activity {
 		sendingMessageProgressDialog.setCancelable(false);
 
 		setContentView(ll);
+
+		createNotificationChannel();
+	}
+
+	private void createNotificationChannel() {
+		// Create the NotificationChannel, but only on API 26+ because
+		// the NotificationChannel class is new and not in the support library
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+			NotificationChannel channel = new NotificationChannel(DEFAULT_NOTIFICATION_CHANNEL_ID, DEFAULT_NOTIFICATION_CHANNEL_ID, NotificationManager.IMPORTANCE_DEFAULT);
+			NotificationManager notificationManager = getSystemService(NotificationManager.class);
+			notificationManager.createNotificationChannel(channel);
+		}
 	}
 
 	private void registerBroadcastReceivers() {
@@ -206,6 +230,18 @@ public class dear2dear extends Activity {
 	 * Check cached names against contacts IDs stored in preferences (issue #11)
 	 */
 	private void checkCachedNamesAgainstContactIds() {
+		if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
+			if (ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.READ_CONTACTS)) {
+				String message = getString(R.string.permissionReadContactsRationale);
+				Log.d(TAG, message);
+				showToast(message);
+			}
+
+			ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_CONTACTS},  ACTIVITY_REQUEST_PERMISSION_READ_CONTACTS);
+
+			return;
+		}
+
 		boolean cacheValid = true;
 		StringBuilder sb = new StringBuilder();
 
@@ -255,13 +291,17 @@ public class dear2dear extends Activity {
 		if (value != notificationShortcut) {
 			NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 			if (value) {
-				Notification notification = new Notification(R.drawable.icon, context.getString(R.string.notificationMessage), System.currentTimeMillis());
 				Intent intent = new Intent(context, dear2dear.class);
-				notification.setLatestEventInfo(context, context.getString(R.string.app_name) + " " + getAppVersionName(), context.getString(R.string.notificationLabel),
-						PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT));
-				notification.flags |= Notification.FLAG_ONGOING_EVENT;
-				notification.flags |= Notification.FLAG_NO_CLEAR;
-				notificationManager.notify(0, notification);
+
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(context, DEFAULT_NOTIFICATION_CHANNEL_ID)
+			        .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+					.setSmallIcon(R.drawable.icon)
+					.setContentTitle(context.getString(R.string.app_name) + " " + getAppVersionName())
+					.setContentText(context.getString(R.string.notificationLabel))
+					.setContentIntent(PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT))
+					.setOngoing(true);
+
+				notificationManager.notify(0, builder.build());
 			} else {
 				notificationManager.cancel(0);
 			}
@@ -356,6 +396,24 @@ public class dear2dear extends Activity {
 		}
 	}
 
+	@Override
+	public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+		switch (requestCode) {
+			case ACTIVITY_REQUEST_PERMISSION_READ_CONTACTS: {
+				if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+					String message = getString(R.string.permissionReadContactsGranted);
+					Log.d(dear2dear.TAG, message);
+					showToast(message);
+				} else {
+					String message = getString(R.string.permissionReadContactsDenied);
+					Log.e(dear2dear.TAG, message);
+					showToast(message);
+				}
+				return;
+			}
+		}
+	}
+
 	private void startFromScratch() {
 		// Hide restart button
 		restartButton.setVisibility(View.INVISIBLE);
@@ -443,6 +501,30 @@ public class dear2dear extends Activity {
 	}
 
 	private void sendMessage() {
+		if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
+			if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.SEND_SMS)) {
+				String message = getString(R.string.permissionSendSmsRationale);
+				Log.d(dear2dear.TAG, message);
+				showToast(message);
+			}
+
+			ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS},  ACTIVITY_REQUEST_PERMISSION_SEND_SMS);
+
+			return;
+		}
+
+		 if (Build.VERSION.SDK_INT == Build.VERSION_CODES.O && ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+			if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_PHONE_STATE)) {
+				String message = getString(R.string.permissionReadPhoneStateRationale);
+				Log.d(dear2dear.TAG, message);
+				showToast(message);
+			}
+
+			ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE},  ACTIVITY_REQUEST_PERMISSION_READ_PHONE_STATE);
+
+			return;
+		}
+
 		String message = getString(R.string.sendingMessageToContactText, messageStepChoice, destinationStepChoiceLabel, getString(R.string.sms), destinationChoiceDetails);
 
 		sendingMessageProgressDialog.setMessage(message);
@@ -464,6 +546,18 @@ public class dear2dear extends Activity {
 	}
 
 	private String getPhoneNumberFromUri(String contactUri) {
+		if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
+			if (ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.READ_CONTACTS)) {
+				String message = getString(R.string.permissionReadContactsRationale);
+				Log.d(TAG, message);
+				showToast(message);
+			}
+
+			ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_CONTACTS},  ACTIVITY_REQUEST_PERMISSION_READ_CONTACTS);
+
+			return null;
+		}
+
 		String number = null;
 		Cursor cursor = managedQuery(Uri.parse(contactUri), null, null, null, null);
 		int count = cursor.getCount();
