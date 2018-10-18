@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (C) 2010-2016 Patrick Decat
+    Copyright (C) 2010-2018 Patrick Decat
 
     dear2dear is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -14,7 +14,7 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with dear2dear.  If not, see <http://www.gnu.org/licenses />.
+    along with dear2dear.  If not, see <http://www.gnu.org/licenses/>.
 
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
@@ -28,7 +28,7 @@
     <parent>
         <groupId>org.decat</groupId>
         <artifactId>parent</artifactId>
-        <version>0.5.4</version>
+        <version>0.5.6</version>
     </parent>
 
     <scm>
@@ -118,8 +118,8 @@
 
             <plugin>
                 <!-- Checks for license headers. Use "mvn license:format" to update files. -->
-                <groupId>com.mycila.maven-license-plugin</groupId>
-                <artifactId>maven-license-plugin</artifactId>
+                <groupId>com.mycila</groupId>
+                <artifactId>license-maven-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
