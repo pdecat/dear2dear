@@ -29,7 +29,6 @@
 
 	<!-- Notifications -->
 	<string name="notificationLabel">Launch dear2dear</string>
-	<string name="notificationMessage">Shortcut to launch dear2dear…</string>
 
 	<!-- Miscellaneous messages -->
 	<string name="contactInformationInvalidText">Contact information for %1$s is invalid! (contactUri=%2$s, cachedName=%3$s, currentName=%4$s)</string>

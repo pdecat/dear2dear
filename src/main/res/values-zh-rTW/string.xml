@@ -28,7 +28,6 @@
 
 	<!-- Notifications -->
 	<string name="notificationLabel">啟動 dear2dear</string>
-	<string name="notificationMessage">啟動 dear2dear 的捷徑…</string>
 
 	<!-- Miscellaneous messages -->
 	<string name="contactInformationInvalidText">聯繫人 %1$s 的訊息是無效的！(聯繫人的網址=%2$s，儲存名字=%3$s，目前名字=%4$s)</string>
