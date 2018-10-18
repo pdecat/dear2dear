@@ -159,7 +159,7 @@ public class dear2dear extends Activity {
 		// Create the NotificationChannel, but only on API 26+ because
 		// the NotificationChannel class is new and not in the support library
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-			NotificationChannel channel = new NotificationChannel(DEFAULT_NOTIFICATION_CHANNEL_ID, DEFAULT_NOTIFICATION_CHANNEL_ID, NotificationManager.IMPORTANCE_DEFAULT);
+			NotificationChannel channel = new NotificationChannel(DEFAULT_NOTIFICATION_CHANNEL_ID, DEFAULT_NOTIFICATION_CHANNEL_ID, NotificationManager.IMPORTANCE_MIN);
 			NotificationManager notificationManager = getSystemService(NotificationManager.class);
 			notificationManager.createNotificationChannel(channel);
 		}
@@ -293,15 +293,20 @@ public class dear2dear extends Activity {
 			if (value) {
 				Intent intent = new Intent(context, dear2dear.class);
 
-                NotificationCompat.Builder builder = new NotificationCompat.Builder(context, DEFAULT_NOTIFICATION_CHANNEL_ID)
-			        .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                Notification notification = new NotificationCompat.Builder(context, DEFAULT_NOTIFICATION_CHANNEL_ID)
+			        .setPriority(NotificationCompat.PRIORITY_MIN)
+					.setVisibility(NotificationCompat.VISIBILITY_SECRET)
+					.setCategory(NotificationCompat.CATEGORY_SERVICE)
+					.setVibrate(null)
 					.setSmallIcon(R.drawable.icon)
+					.setStyle(new NotificationCompat.BigTextStyle().bigText(context.getString(R.string.notificationLabel)))
 					.setContentTitle(context.getString(R.string.app_name) + " " + getAppVersionName())
-					.setContentText(context.getString(R.string.notificationLabel))
 					.setContentIntent(PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT))
-					.setOngoing(true);
+					.setOngoing(true)
+					.setShowWhen(false)
+					.build();
 
-				notificationManager.notify(0, builder.build());
+				notificationManager.notify(0, notification);
 			} else {
 				notificationManager.cancel(0);
 			}
